@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f4f3ed"><meta name="description" content="Panel de inventario y ventas de La Esquina.">
+  <title>La Esquina — Gestión de tienda</title><link rel="stylesheet" href="/styles.css?v=20261020-4">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="La Esquina, inicio"><span class="brand-mark" aria-hidden="true"><span class="brand-monogram">L<span class="brand-dot">·</span>E</span></span><span class="brand-name">LA ESQUINA<small>SUPERMERCADO DE BARRIO</small></span></a>
+    <nav class="main-nav" aria-label="Navegación principal"><a href="#inicio">Inicio</a><a href="#inventario">Inventario</a><a href="#gestion">Panel de control</a></nav>
+    <div class="connection"><span class="connection-dot"></span><span id="connectionText">CONECTANDO</span><button class="icon-button" id="refreshButton" type="button" aria-label="Actualizar datos" title="Actualizar datos">↻</button></div>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero page-grid" aria-labelledby="heroTitle">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span>01</span> · GESTIÓN DE TIENDA</p>
+        <h1 id="heroTitle">Lo cotidiano,<br><em>bien hecho.</em></h1>
+        <p class="hero-intro">Tu tienda, en orden. Un lugar sencillo para cuidar el inventario, atender a quienes vuelven y registrar cada venta.</p>
+        <a class="round-link" href="#gestion"><span>Empezar a gestionar</span><b>↘</b></a>
+      </div>
+      <div class="hero-visual reveal" aria-label="Ilustración decorativa de una bolsa de mercado">
+        <div class="visual-stamp">FRESCO<br>DE AQUÍ<span>✳</span></div><div class="visual-sun"></div><div class="visual-leaf leaf-one">✳</div><div class="visual-leaf leaf-two">✳</div>
+        <div class="market-bag"><div class="bag-handle"></div><span>lo bueno<br>está cerca.</span><i>LA ESQUINA</i></div>
+        <div class="visual-caption"><span>HECHO PARA EL DÍA A DÍA</span><span>CO. 001 — BARRIO</span></div>
+      </div>
+      <div class="hero-foot"><span>UN BUEN DÍA EMPIEZA AQUÍ</span><a href="#inventario">BAJAR PARA EXPLORAR ↓</a></div>
+    </section>
+
+    <section class="overview page-grid" aria-label="Resumen de la tienda">
+      <div class="overview-heading"><p class="eyebrow"><span>02</span> · HOY EN LA TIENDA</p><p>Una mirada rápida<br>a lo que importa.</p></div>
+      <article class="metric"><span>PRODUCTOS</span><strong id="countProducts">—</strong><small>en el catálogo</small></article>
+      <article class="metric metric-accent"><span>POR REPONER</span><strong id="countLow">—</strong><small>10 unidades o menos</small></article>
+      <article class="metric"><span>CLIENTES</span><strong id="countClients">—</strong><small>registrados</small></article>
+      <article class="metric"><span>VENTAS</span><strong id="countSales">—</strong><small>registradas</small></article>
+    </section>
+
+    <section id="inventario" class="inventory-section section-pad">
+      <div class="section-heading"><div><p class="eyebrow"><span>03</span> · INVENTARIO</p><h2>Lo que tenemos.</h2></div><p class="section-note">Cada producto cuenta.<br>Y cada unidad también.</p></div>
+      <div class="inventory-tools"><label class="search-box"><span>⌕</span><input id="productSearch" type="search" placeholder="Buscar un producto..." aria-label="Buscar productos"></label><label class="filter-select"><span>VER</span><select id="stockFilter" aria-label="Filtrar productos"><option value="todos">Todo el inventario</option><option value="bajo">Solo stock bajo</option></select></label></div>
+      <div class="inventory-layout"><div class="table-shell"><table><thead><tr><th>PRODUCTO</th><th>CATEGORÍA</th><th>PRECIO</th><th>EXISTENCIAS</th><th>ESTADO</th></tr></thead><tbody id="productRows"><tr><td colspan="5" class="empty-state">Cargando inventario…</td></tr></tbody></table><div id="inventoryEmpty" class="empty-state hidden">No encontramos productos con esa búsqueda.</div></div>
+        <aside class="restock-card"><div class="restock-top"><span class="eyebrow">OJO CON ESTO</span><span class="restock-symbol">↗</span></div><h3>Por reponer<span>.</span></h3><p>Un pequeño aviso para que nada falte.</p><div id="lowList" class="low-list"><span class="muted">Cargando existencias…</span></div><a href="#gestion" class="text-link">Añadir producto <span>↗</span></a></aside>
+      </div>
+    </section>
+
+    <section id="gestion" class="management-section section-pad">
+      <div class="section-heading"><div><p class="eyebrow"><span>04</span> · GESTIÓN</p><h2>La tienda empieza aquí.</h2></div><p class="section-note">Crea primero tus categorías<br>y proveedores. Lo demás fluye.</p></div>
+      <div class="form-grid">
+        <form id="categoryForm" class="form-card form-card-lime">
+          <div class="form-kicker"><span>01 / CATÁLOGO</span><span class="form-icon">✳</span></div><h3>Una nueva<br>categoría.</h3><p class="form-description">Ordena lo que vendes en grupos fáciles de encontrar.</p>
+          <label>Nombre<input name="nombre" placeholder="Ej. Bebidas" required maxlength="100"></label><label>Descripción <span class="optional">OPCIONAL</span><input name="descripcion" placeholder="Unas palabras sobre la categoría" maxlength="500"></label>
+          <button class="submit-button" type="submit"><span>Crear categoría</span><b>↗</b></button>
+        </form>
+        <form id="supplierForm" class="form-card form-card-paper">
+          <div class="form-kicker"><span>02 / ABASTECIMIENTO</span><span class="form-icon">↗</span></div><h3>Un proveedor<br>de confianza.</h3><p class="form-description">Registra a quien te ayuda a tener siempre lo bueno.</p>
+          <label>Nombre<input name="nombre" placeholder="Ej. Distribuciones Central" required maxlength="120"></label><div class="field-pair"><label>Teléfono<input name="telefono" placeholder="300 000 0000" maxlength="30"></label><label>Correo <span class="optional">OPCIONAL</span><input name="correo" type="email" placeholder="hola@proveedor.com" maxlength="150"></label></div>
+          <button class="submit-button" type="submit"><span>Crear proveedor</span><b>↗</b></button>
+        </form>
+        <form id="productForm" class="form-card form-card-dark">
+          <div class="form-kicker"><span>03 / INVENTARIO</span><span class="form-icon">＋</span></div><h3>Algo nuevo<br>en la estantería.</h3><p class="form-description">Elige categoría y proveedor; nosotros conectamos los datos.</p>
+          <label>Nombre del producto<input name="nombre" placeholder="Ej. Café molido 250 g" required maxlength="140"></label><div class="field-pair"><label>Precio<input name="precio" type="number" step="0.01" min="0.01" placeholder="0" required></label><label>Unidades iniciales<input name="stock" type="number" min="0" placeholder="0" required></label></div>
+          <label>Código de barras<input name="codigoBarras" placeholder="Código único del producto" required maxlength="60"></label><div class="field-pair"><label>Categoría<select name="categoriaId" class="category-options" required><option value="">Primero crea una categoría</option></select></label><label>Proveedor<select name="proveedorId" class="supplier-options" required><option value="">Primero crea un proveedor</option></select></label></div>
+          <button class="submit-button" type="submit"><span>Añadir producto</span><b>↗</b></button>
+        </form>
+        <form id="clientForm" class="form-card form-card-paper">
+          <div class="form-kicker"><span>04 / COMUNIDAD</span><span class="form-icon">☺</span></div><h3>Alguien que<br>vuelve.</h3><p class="form-description">Un registro sencillo para reconocer a tus clientes.</p>
+          <label>Nombre<input name="nombre" placeholder="Nombre y apellido" required maxlength="140"></label><div class="field-pair"><label>Documento<input name="documento" placeholder="Número de documento" required maxlength="40"></label><label>Teléfono<input name="telefono" placeholder="300 000 0000" maxlength="30"></label></div>
+          <button class="submit-button" type="submit"><span>Guardar cliente</span><b>↗</b></button>
+        </form>
+        <div id="ventas" class="form-card form-card-sand sale-card">
+          <div class="form-kicker"><span>05 / CAJA</span><span class="form-icon">↗</span></div><h3>Una compra<br>lista para llevar.</h3><p class="form-description">Elige quién compra y suma los productos. El total y el stock se calculan solos.</p>
+          <form id="saleForm" class="sale-form"><label>Cliente<select name="clienteId" class="client-options" required><option value="">Aún no hay clientes</option></select></label><div class="sale-lines-heading"><span>PRODUCTOS</span><button id="addSaleLine" class="add-line" type="button">＋ Añadir otro</button></div><div id="saleLines" class="sale-lines"></div><div class="sale-total"><span>TOTAL ESTIMADO</span><strong id="saleEstimate">—</strong></div><button class="submit-button" type="submit"><span>Registrar venta</span><b>↗</b></button></form>
+        </div>
+      </div>
+      <div id="message" class="toast" role="status" aria-live="polite"></div>
+    </section>
+  </main>
+  <footer class="footer"><a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true"><span class="brand-monogram">L<span class="brand-dot">·</span>E</span></span><span class="brand-name">LA ESQUINA<small>SUPERMERCADO DE BARRIO</small></span></a><span>UN BUEN DÍA, TODOS LOS DÍAS.</span><a href="/api/productos">VER LA API ↗</a></footer>
+  <script src="/app.js?v=20261020-4"></script>
+</body></html>

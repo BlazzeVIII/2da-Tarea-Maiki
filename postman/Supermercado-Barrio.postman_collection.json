@@ -1,0 +1,15 @@
+{
+  "info": {"name":"Supermercado de Barrio API","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},
+  "variable":[{"key":"baseUrl","value":"http://localhost:8080"}],
+  "item":[
+    {"name":"Crear categoría","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"nombre\":\"Abarrotes\",\"descripcion\":\"Productos de despensa\"}"},"url":"{{baseUrl}}/api/categorias"}},
+    {"name":"Crear proveedor","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"nombre\":\"Distribuciones Central\",\"telefono\":\"3001234567\",\"correo\":\"ventas@central.com\"}"},"url":"{{baseUrl}}/api/proveedores"}},
+    {"name":"Crear producto","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"nombre\":\"Arroz 1 kg\",\"precio\":4500,\"stock\":30,\"codigoBarras\":\"770000000001\",\"categoriaId\":1,\"proveedorId\":1}"},"url":"{{baseUrl}}/api/productos"}},
+    {"name":"Crear cliente","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"nombre\":\"Ana Pérez\",\"documento\":\"10203040\",\"telefono\":\"3001234567\"}"},"url":"{{baseUrl}}/api/clientes"}},
+    {"name":"Registrar venta","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"clienteId\":1,\"detalles\":[{\"productoId\":1,\"cantidad\":2}]}"},"url":"{{baseUrl}}/api/ventas"}},
+    {"name":"Listar productos","request":{"method":"GET","url":"{{baseUrl}}/api/productos"}},
+    {"name":"Buscar productos","request":{"method":"GET","url":"{{baseUrl}}/api/productos/buscar?nombre=arroz"}},
+    {"name":"Stock bajo","request":{"method":"GET","url":"{{baseUrl}}/api/productos/stock-bajo?limite=10"}},
+    {"name":"Ventas entre fechas","request":{"method":"GET","url":"{{baseUrl}}/api/ventas/fecha?inicio=2026-01-01&fin=2026-12-31"}}
+  ]
+}
